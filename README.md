@@ -39,8 +39,7 @@ root                    (project root folder)
 
 ## Authors
 ---
-* # TODO: Add your names and emails here
-Josh Kopaunik
-Ethan McRae
-Brigham Chen
-Jaden Day
+* Josh Kopaunik,
+* Ethan McRae,
+* Brigham Chen,
+* Jaden Day
