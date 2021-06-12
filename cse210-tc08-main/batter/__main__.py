@@ -1,4 +1,4 @@
-import random
+from random import randint
 from game import constants
 from game.director import Director
 from game.actor import Actor
@@ -10,6 +10,7 @@ from game.move_actors_action import MoveActorsAction
 from game.input_service import InputService
 from game.output_service import OutputService
 from asciimatics.screen import Screen 
+from game.score import Score
 
 def main(screen):
 
@@ -25,9 +26,20 @@ def main(screen):
     paddle.set_position(position)
     cast["paddle"] = [paddle]
     """
+    score = Score()._score
+    x = 1
+    y = 0
+    position = Point(x, y)
+    velocity = Point(0, 0)
+    stick = Actor()
+    stick.set_text(f"Score: {score}")
+    stick.set_position(position)
+    stick.set_velocity(velocity)
+    cast["stick"] = [stick]
+
     
     cast["paddle"] = []
-    for x in range(31, 56):
+    for x in range(30, 50):
         y = 18
         position = Point(x, y)
         paddle = Actor()
@@ -40,11 +52,11 @@ def main(screen):
         for y in range(3, 7):
             position = Point(x, y)
             brick = Actor()
-            brick.set_text("*")
+            brick.set_text("X")
             brick.set_position(position)
             cast["brick"].append(brick)
 
-    x = int(constants.MAX_X / 2 - 10)
+    x = randint(40,60)
     y = int(constants.MAX_Y / 2)
     position = Point(x, y)
     velocity = Point(1, 1)
@@ -56,7 +68,7 @@ def main(screen):
     cast["ball"] = [ball]
 
     trail1 = Actor()
-    trail1.set_text("o")
+    trail1.set_text("+")
     trail1.set_position(position)
     ball.set_child(trail1)
 

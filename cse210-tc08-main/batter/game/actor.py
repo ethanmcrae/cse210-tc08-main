@@ -17,7 +17,7 @@ class Actor:
 
     def __init__(self):
         """The class constructor."""
-        #self._description = ""
+        self._description = ""
         self._text = ""
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
@@ -55,13 +55,13 @@ class Actor:
         """
         return self._velocity
     
-    #def set_description(self, description):
+    def set_description(self, description):
         """Updates the actor's description to the given one.
         
         Args:
             description (string): The given description.
         """
-        #self._description = description
+        self._description = description
 
     def set_position(self, position):
         """Updates the actor's position to the given one.
@@ -91,9 +91,15 @@ class Actor:
         self._velocity.reverse(set=True)
 
     def set_x_velocity(self, x_value):
-        """Sets the velocity's x value"""
+        """Sets the velocity's x value
+        Args:
+            position (Point): The given x-velocity.
+        """
         self._velocity.set_x(x_value)
 
     def set_y_velocity(self, y_value):
-        """Sets the velocity's y value"""
+        """Sets the velocity's y value
+        Args:
+            position (Point): The given y-velocity.
+        """
         self._velocity.set_y(y_value)
