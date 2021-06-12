@@ -1,5 +1,6 @@
 from time import sleep
 from game import constants
+from game.speed import frame
 
 class Director:
     """A code template for a person who directs the game. The responsibility of 
@@ -29,7 +30,7 @@ class Director:
             self._cue_action("input")
             self._cue_action("update")
             self._cue_action("output")
-            sleep(constants.FRAME_LENGTH)
+            sleep(frame)
 
     def _cue_action(self, tag):
         """Executes the actions with the given tag.
