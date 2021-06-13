@@ -11,5 +11,3 @@ class DrawActorsAction(Action):
         for group in cast.values(): #??
             self._output_service.draw_actors(group)
         self._output_service.flush_buffer()
-
-

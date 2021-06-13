@@ -1,4 +1,4 @@
-import random
+from random import randint
 from game import constants
 from game.director import Director
 from game.actor import Actor
@@ -10,6 +10,9 @@ from game.move_actors_action import MoveActorsAction
 from game.input_service import InputService
 from game.output_service import OutputService
 from asciimatics.screen import Screen 
+from game.speed import speed
+from time import sleep
+
 
 def main(screen):
 
@@ -26,8 +29,11 @@ def main(screen):
     cast["paddle"] = [paddle]
     """
     
+
+
+    
     cast["paddle"] = []
-    for x in range(31, 56):
+    for x in range(30, 50):
         y = 18
         position = Point(x, y)
         paddle = Actor()
@@ -40,11 +46,11 @@ def main(screen):
         for y in range(3, 7):
             position = Point(x, y)
             brick = Actor()
-            brick.set_text("*")
+            brick.set_text("X")
             brick.set_position(position)
             cast["brick"].append(brick)
 
-    x = int(constants.MAX_X / 2 - 10)
+    x = randint(40,60)
     y = int(constants.MAX_Y / 2)
     position = Point(x, y)
     velocity = Point(1, 1)
@@ -56,7 +62,7 @@ def main(screen):
     cast["ball"] = [ball]
 
     trail1 = Actor()
-    trail1.set_text("o")
+    trail1.set_text("+")
     trail1.set_position(position)
     ball.set_child(trail1)
 
@@ -72,7 +78,7 @@ def main(screen):
     output_service = OutputService(screen)
     control_actors_action = ControlActorsAction(input_service)
     move_actors_action = MoveActorsAction()
-    handle_collisions_acition = HandleCollisionsAction()
+    handle_collisions_acition = HandleCollisionsAction(score)
     draw_actors_action = DrawActorsAction(output_service)
     
     script["input"] = [control_actors_action]
@@ -83,4 +89,5 @@ def main(screen):
     director = Director(cast, script)
     director.start_game()
 
+sleep(1)
 Screen.wrapper(main)

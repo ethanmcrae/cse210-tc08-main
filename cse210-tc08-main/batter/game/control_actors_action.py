@@ -33,7 +33,7 @@ class ControlActorsAction(Action):
         # for i in range(0, 25):
         paddles = cast["paddle"] # there's only one in the cast
         for paddle in paddles:
-            paddle.set_x_velocity(direction.get_x() * 2)
+            paddle.set_x_velocity(direction.get_x() * 5)
            
             
             
