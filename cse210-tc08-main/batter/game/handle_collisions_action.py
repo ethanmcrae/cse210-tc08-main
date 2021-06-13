@@ -3,7 +3,7 @@ import random
 from game import actor, constants 
 from game.point import Point
 from game.move_actors_action import MoveActorsAction
-from game.score import Score
+
 
 from game.action import Action
 
@@ -13,7 +13,9 @@ class HandleCollisionsAction(Action):
     Stereotype:
         Controller
     """
-
+    def __init__(self, scoreObj):
+        super().__init__()
+        self._score_obj = scoreObj
 
 
     def execute(self, cast):
@@ -55,7 +57,7 @@ class HandleCollisionsAction(Action):
             if point.add(Point(0, 0)).equals(ball.get_position()):
                 ball.reverse_velocity()
                 cast['brick'].remove(brick)
-                Score().add_scores(10) #add scores
+                
                 removed = True
                 return
         if not removed:
@@ -66,7 +68,7 @@ class HandleCollisionsAction(Action):
                     if point.add(Point(0, 1)).equals(ball.get_position()):
                         if not removed:
                             cast['brick'].remove(brick)
-                            Score().add_scores(10) #add score
+                            
                             removed = True
                         ball.set_y_velocity(1)
                 # - Down
@@ -74,7 +76,7 @@ class HandleCollisionsAction(Action):
                     if point.add(Point(0, -1)).equals(ball.get_position()):
                         if not removed:
                             cast['brick'].remove(brick)
-                            Score().add_scores(10) #add score
+                            
                             removed = True
                         ball.set_y_velocity(-1)
                 # - Left
@@ -82,7 +84,7 @@ class HandleCollisionsAction(Action):
                     if point.add(Point(1, 0)).equals(ball.get_position()):
                         if not removed:
                             cast['brick'].remove(brick)
-                            Score().add_scores(10) #add score
+                            
                             removed = True
                         ball.set_x_velocity(1)
                 # - Right
@@ -90,7 +92,7 @@ class HandleCollisionsAction(Action):
                     if point.add(Point(-1, 0)).equals(ball.get_position()):
                         if not removed:
                             cast['brick'].remove(brick)
-                            Score().add_scores(10) #add score
+                            
                             removed = True
                         ball.set_x_velocity(-1)
         # - - Paddle

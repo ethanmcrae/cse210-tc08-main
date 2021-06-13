@@ -10,7 +10,6 @@ from game.move_actors_action import MoveActorsAction
 from game.input_service import InputService
 from game.output_service import OutputService
 from asciimatics.screen import Screen 
-from game.score import Score
 from game.speed import speed
 from time import sleep
 
@@ -29,17 +28,8 @@ def main(screen):
     paddle.set_position(position)
     cast["paddle"] = [paddle]
     """
-    score = Score()
-    scores = score._score
-    x = 1
-    y = 0
-    position = Point(x, y)
-    velocity = Point(0, 0)
-    stick = Actor()
-    stick.set_text(f"Score: {scores}")
-    stick.set_position(position)
-    stick.set_velocity(velocity)
-    cast["stick"] = [stick]
+    
+
 
     
     cast["paddle"] = []
@@ -88,7 +78,7 @@ def main(screen):
     output_service = OutputService(screen)
     control_actors_action = ControlActorsAction(input_service)
     move_actors_action = MoveActorsAction()
-    handle_collisions_acition = HandleCollisionsAction()
+    handle_collisions_acition = HandleCollisionsAction(score)
     draw_actors_action = DrawActorsAction(output_service)
     
     script["input"] = [control_actors_action]
